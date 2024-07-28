@@ -1,4 +1,4 @@
-name: Releases
+name: Create Releases
 
 on:
   push:
@@ -10,15 +10,18 @@ jobs:
     uses: ./.github/workflows/tests.yaml
     secrets: inherit
 
-  bump_version:
-    runs-on: ubuntu-latest
-
     # only run if the commit message begins with "bump:"
     if: "startsWith(github.event.head_commit.message, 'bump:')"
+
+  bump_version:
+    runs-on: ubuntu-latest
 
     # only run if the other jobs succeed
     needs:
       - tests
+
+    # only run if the commit message begins with "bump:"
+    if: "startsWith(github.event.head_commit.message, 'bump:')"
 
     steps:
       - uses: actions/checkout@v4

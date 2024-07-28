@@ -1,0 +1,18 @@
+name: Build Releases
+
+on:
+  push:
+    tags:
+    - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # TODO actually build the container
+
+      - run: |
+          echo "Finished building and pushing containers."
