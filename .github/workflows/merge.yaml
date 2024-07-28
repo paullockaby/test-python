@@ -9,3 +9,7 @@ jobs:
   tests:
     uses: ./.github/workflows/tests.yaml
     secrets: inherit
+
+    # only run if the commit message does not begin with "bump:"
+    # do not want to run the tests when we are bumping because tests already ran
+    if: "!startsWith(github.event.head_commit.message, 'bump:')"

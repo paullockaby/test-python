@@ -1,17 +1,13 @@
 name: Create Releases
 
 on:
-  push:
-    branches:
-      - main
+  # only trigger this workflow manually
+  workflow_dispatch:
 
 jobs:
   tests:
     uses: ./.github/workflows/tests.yaml
     secrets: inherit
-
-    # only run if the commit message begins with "bump:"
-    if: "startsWith(github.event.head_commit.message, 'bump:')"
 
   bump_version:
     runs-on: ubuntu-latest
@@ -21,10 +17,7 @@ jobs:
       - tests
 
     permissions:
-      contents: read
-
-    # only run if the commit message begins with "bump:"
-    if: "startsWith(github.event.head_commit.message, 'bump:')"
+      contents: write
 
     steps:
       - uses: actions/checkout@v4

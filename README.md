@@ -4,7 +4,7 @@
 ![GitHub Release](https://img.shields.io/github/v/release/paullockaby/test-repo)
 ![GitHub License](https://img.shields.io/github/license/paullockaby/test-repo)
 ![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fpaullockaby%2Ftest-repo%2Fmain%2Fpyproject.toml)
-![Mastodon Follow](https://img.shields.io/mastodon/follow/paul?domain=uncontrollablegas.com)
+![Mastodon Follow](https://img.shields.io/mastodon/follow/106882571030731815?domain=https%3A%2F%2Funcontrollablegas.com)
 
 This is a test repository for seeing how GitHub Actions work.
 

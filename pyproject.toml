@@ -1,3 +1,9 @@
+[project]
+name = "testrepo"
+readme = "README.md"
+license = {file = "LICENSE.md"}
+requires-python = ">=3.12 <3.13"
+
 [tool.poetry]
 name = "testrepo"
 version = "0.0.0"  # DO NOT CHANGE -- set during build
