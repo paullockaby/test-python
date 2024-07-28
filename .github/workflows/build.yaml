@@ -10,6 +10,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12.x"
+          cache: "pip"
 
       - name: lint
         uses: pre-commit/action@v3.0.1
@@ -20,19 +21,19 @@ jobs:
     needs:
       - pre-commit
 
-    services:
-      postgres:
-        image: docker.io/library/postgres:16
-        env:
-          POSTGRES_PASSWORD: postgres
-        # set health checks to wait until postgres has started
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
+#    services:
+#      postgres:
+#        image: docker.io/library/postgres:16
+#        env:
+#          POSTGRES_PASSWORD: postgres
+#        # set health checks to wait until postgres has started
+#        options: >-
+#          --health-cmd pg_isready
+#          --health-interval 10s
+#          --health-timeout 5s
+#          --health-retries 5
+#        ports:
+#          - 5432:5432
 
     steps:
       - uses: actions/checkout@v4
