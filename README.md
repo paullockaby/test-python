@@ -2,9 +2,11 @@
 
 [![Merge Pipelines](https://github.com/paullockaby/test-repo/actions/workflows/merge.yaml/badge.svg)](https://github.com/paullockaby/test-repo/actions/workflows/merge.yaml)
 ![GitHub Release](https://img.shields.io/github/v/release/paullockaby/test-repo)
-![GitHub License](https://img.shields.io/github/license/paullockaby/test-repo)
 ![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fpaullockaby%2Ftest-repo%2Fmain%2Fpyproject.toml)
-![Mastodon Follow](https://img.shields.io/mastodon/follow/106882571030731815?domain=https%3A%2F%2Funcontrollablegas.com)
+![GitHub License](https://img.shields.io/github/license/paullockaby/test-repo)
+
+Follow me on social media!
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/106882571030731815?domain=https%3A%2F%2Funcontrollablegas.com)](https://uncontrollablegas.com/@paul)
 
 This is a test repository for seeing how GitHub Actions work.
 
@@ -37,4 +39,10 @@ The rule that we're going to create is will look like this:
       * `tests / test` - GitHub Actions
   * Block force pushes
 
-Create the above rule, the above deploy key, and tweak the jobs to your liking, to run the lints, and tests, and builds that you want and you're on your way.
+Create the above rule, the above deploy key, and tweak the jobs to your liking, to run the lints, and tests, and builds that you want and you're on your way. What's next?
+
+Well, this should be what you do next:
+
+1. Install pre-commit hooks: `make pre-commit`
+2. Make changes and commit them using convential commit messages.
+3. When you're ready to make a release, go to GitHub Actions tab and choose "Create Releases" and then click "Run workflow" and run the workflow against the `main` branch. You'll see, based on your commit messages, an update to CHANGELOG.md, a new tag, a release, and whatever you put into the `release-build.yaml` action.
