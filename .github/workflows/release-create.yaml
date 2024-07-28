@@ -42,7 +42,7 @@ jobs:
         uses: softprops/action-gh-release@v2.0.8
         with:
           body_path: "changes.md"
-          tag_name: "${{ steps.cz.outputs.version }}"
+          tag_name: "v${{ steps.cz.outputs.version }}"
 
       - run: |
-          echo "Bumped to version ${{ steps.cz.outputs.version }}"
+          echo "Bumped to version v${{ steps.cz.outputs.version }}"
