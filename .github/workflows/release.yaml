@@ -1,0 +1,47 @@
+name: Releases
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tests:
+    uses: ./.github/workflows/tests.yaml
+    secrets: inherit
+
+  bump_version:
+    runs-on: ubuntu-latest
+
+    # only run if the commit message begins with "bump:"
+    if: "!startsWith(github.event.head_commit.message, 'bump:')"
+
+    # only run if the other jobs succeed
+    needs:
+      - tests
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - id: cz
+        name: create bump and changelog
+        uses: commitizen-tools/commitizen-action@0.21.0
+        with:
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          changelog: "true"
+          changelog_increment_filename: "changes.md"
+          git_redirect_stderr: "true"
+
+      - name: create release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: "changes.md"
+          tag_name: "${{ steps.cz.outputs.version }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: |
+          echo "Bumped to version ${{ steps.cz.outputs.version }}"
