@@ -1,6 +1,10 @@
 # test-repo
 
 [![Merge Pipelines](https://github.com/paullockaby/test-repo/actions/workflows/merge.yaml/badge.svg)](https://github.com/paullockaby/test-repo/actions/workflows/merge.yaml)
+![GitHub Release](https://img.shields.io/github/v/release/paullockaby/test-repo)
+![GitHub License](https://img.shields.io/github/license/paullockaby/test-repo)
+![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fpaullockaby%2Ftest-repo%2Fmain%2Fpyproject.toml)
+![Mastodon Follow](https://img.shields.io/mastodon/follow/paul?domain=uncontrollablegas.com)
 
 This is a test repository for seeing how GitHub Actions work.
 
@@ -10,7 +14,7 @@ To make this kinda work, first you'll want to generate a deploy key for the repo
 ssh-keygen -t ed25519 -C commitizen -f deploy_key -P ""
 ```
 
-This will create two files: `deploy_key` and `deploy_key.pub`. **DO NOT COMMIT THESE** Save them off somewhere for future reference. Take the `deploy_key.pub` file and add it as a deploy key to the repo and make sure that it has write access. Take the private key, aka the non `.pub` file, and create a secret called `DEPLOY_KEY` in the repo. This will be used by commitizen to push commits with the changelog to the `main` branch.
+This will create two files: `deploy_key` and `deploy_key.pub`. **DO NOT COMMIT THESE.** Save them off somewhere for future reference. Take the `deploy_key.pub` file and add it as a deploy key to the repo and make sure that it has write access. Take the private key, aka the non `.pub` file, and create a secret called `DEPLOY_KEY` in the repo. This will be used by commitizen to push commits with the changelog to the `main` branch.
 
 Then set up some branch rules. These will only work on public repos. Or, if you have paid for a pro or team plan or enterprise plan, then it will work on private repos, too.
 
