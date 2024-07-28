@@ -1,0 +1,58 @@
+on: [push, pull_request]
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.x"
+          cache: "poetry"
+
+      - name: lint
+        uses: pre-commit/action@v3.0.1
+
+  test:
+    runs-on: ubuntu-latest
+
+    needs:
+      - pre-commit
+
+    services:
+      postgres:
+        image: docker.io/library/postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+        # set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.x"
+          cache: "poetry"
+
+      - name: setup poetry and pre-commit
+        run: |
+          pip install poetry
+          poetry install --no-interaction
+
+      - name: run tests
+        run: |
+          poetry run pytest
+
+      - name: build container
+        run: |
+          docker build .
