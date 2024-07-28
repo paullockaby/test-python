@@ -30,24 +30,26 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: "${{ secrets.GITHUB_TOKEN }}"
+          ssh-key: "${{ secrets.DEPLOY_KEY }}"
 
       - id: cz
         name: Create changelog and bump version
         uses: commitizen-tools/commitizen-action@0.21.0
         with:
-          github_token: "${{ secrets.GITHUB_TOKEN }}"
-          changelog: "true"
+          changelog: true
           changelog_increment_filename: "changes.md"
-          git_redirect_stderr: "true"
+          git_redirect_stderr: true
+          push: false
+
+      - name: Push changelog updates
+        run: |
+          git push origin main --tags
 
       - name: Create release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v2.0.8
         with:
           body_path: "changes.md"
           tag_name: "${{ steps.cz.outputs.version }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - run: |
           echo "Bumped to version ${{ steps.cz.outputs.version }}"
