@@ -1,5 +1,5 @@
 # test-repo
 
-[![tests](https://github.com/paullockaby/test-repo/actions/workflows/build.yaml/badge.svg)](https://github.com/paullockaby/test-repo/actions/workflows/build.yaml)
+[![Merge Pipelines](https://github.com/paullockaby/test-repo/actions/workflows/pull_request.yaml/badge.svg)](https://github.com/paullockaby/test-repo/actions/workflows/pull_request.yaml)
 
 This is a test repository for seeing how GitHub Actions work.
