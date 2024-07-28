@@ -1,12 +1,27 @@
 # test-repo
 
-[![Merge Pipelines](https://github.com/paullockaby/test-repo/actions/workflows/merge.yaml/badge.svg)](https://github.com/paullockaby/test-repo/actions/workflows/merge.yaml)
+This is a testing ground for building a Python project with all of the bells and whistles of a build pipeline using GitHub Actions.
+
+![GitHub License](https://img.shields.io/github/license/paullockaby/test-repo)
 ![GitHub Release](https://img.shields.io/github/v/release/paullockaby/test-repo)
 ![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fpaullockaby%2Ftest-repo%2Fmain%2Fpyproject.toml)
-![GitHub License](https://img.shields.io/github/license/paullockaby/test-repo)
+[![Merge Pipelines](https://github.com/paullockaby/test-repo/actions/workflows/merge.yaml/badge.svg)](https://github.com/paullockaby/test-repo/actions/workflows/merge.yaml)
 
-Follow me on social media!
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/106882571030731815?domain=https%3A%2F%2Funcontrollablegas.com)](https://uncontrollablegas.com/@paul)
+
+## Table of contents
+
+* [Introduction](#introduction)
+* [Installation](#installation)
+* [Quick start](#quick-start)
+* [Usage](#usage)
+* [Known issues and limitations](#known-issues-and-limitations)
+* [Getting help](#getting-help)
+* [Contributing](#contributing)
+* [License](#license)
+* [Acknowledgments](#acknowledgments)
+
+## Introduction
 
 This is a test repository for seeing how GitHub Actions work.
 
@@ -46,3 +61,35 @@ Well, this should be what you do next:
 1. Install pre-commit hooks: `make pre-commit`
 2. Make changes and commit them using convential commit messages.
 3. When you're ready to make a release, go to GitHub Actions tab and choose "Create Releases" and then click "Run workflow" and run the workflow against the `main` branch. You'll see, based on your commit messages, an update to CHANGELOG.md, a new tag, a release, and whatever you put into the `release-build.yaml` action.
+
+## Installation
+
+TODO
+
+## Quick start
+
+TODO
+
+## Usage
+
+TODO
+
+## Known issues and limitations
+
+TODO
+
+## Getting help
+
+TODO
+
+## Contributing
+
+TODO
+
+## License
+
+TODO
+
+## Acknowledgements
+
+I took the format for this README file from [Michael Hucka's READMINE repository](https://github.com/mhucka/readmine).
