@@ -20,6 +20,9 @@ jobs:
     needs:
       - tests
 
+    permissions:
+      contents: read
+
     # only run if the commit message begins with "bump:"
     if: "startsWith(github.event.head_commit.message, 'bump:')"
 

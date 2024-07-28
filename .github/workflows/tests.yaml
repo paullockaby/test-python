@@ -6,6 +6,10 @@ on:
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
     steps:
       - uses: actions/checkout@v4
 
@@ -26,19 +30,23 @@ jobs:
     needs:
       - pre-commit
 
-#    services:
-#      postgres:
-#        image: docker.io/library/postgres:16
-#        env:
-#          POSTGRES_PASSWORD: postgres
-#        # set health checks to wait until postgres has started
-#        options: >-
-#          --health-cmd pg_isready
-#          --health-interval 10s
-#          --health-timeout 5s
-#          --health-retries 5
-#        ports:
-#          - 5432:5432
+    permissions:
+      contents: read
+
+    # NOTE: just leaving this here as an example
+    #services:
+    #  postgres:
+    #    image: docker.io/library/postgres:16
+    #    env:
+    #      POSTGRES_PASSWORD: postgres
+    #    # set health checks to wait until postgres has started
+    #    options: >-
+    #      --health-cmd pg_isready
+    #      --health-interval 10s
+    #      --health-timeout 5s
+    #      --health-retries 5
+    #    ports:
+    #      - 5432:5432
 
     steps:
       - uses: actions/checkout@v4
