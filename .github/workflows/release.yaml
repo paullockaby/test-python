@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     # only run if the commit message begins with "bump:"
-    if: "!startsWith(github.event.head_commit.message, 'bump:')"
+    if: "startsWith(github.event.head_commit.message, 'bump:')"
 
     # only run if the other jobs succeed
     needs:
@@ -27,7 +27,7 @@ jobs:
           token: "${{ secrets.GITHUB_TOKEN }}"
 
       - id: cz
-        name: create bump and changelog
+        name: Create changelog and bump version
         uses: commitizen-tools/commitizen-action@0.21.0
         with:
           github_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -35,7 +35,7 @@ jobs:
           changelog_increment_filename: "changes.md"
           git_redirect_stderr: "true"
 
-      - name: create release
+      - name: Create release
         uses: softprops/action-gh-release@v2
         with:
           body_path: "changes.md"

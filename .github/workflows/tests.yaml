@@ -9,13 +9,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: setup python
+      - name: Setup python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12.x"
           cache: "pip"
 
-      - name: lint
+      - name: Run linter
         uses: pre-commit/action@v3.0.1
         env:
           SKIP: no-commit-to-branch
@@ -46,17 +46,17 @@ jobs:
       - name: Install poetry
         run: pipx install poetry
 
-      - name: setup python
+      - name: Setup python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12.x"
           cache: "poetry"
 
-      - name: run tests
+      - name: Run python tests
         run: |
           poetry install --no-interaction
           poetry run pytest
 
-      - name: build container
+      - name: Run container tests
         run: |
           docker build .
