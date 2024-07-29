@@ -7,16 +7,20 @@ on:
       increment:
         description: "Set a field to increment."
         required: false
+        default: ""
         type: choice
         options:
+          - ""
           - MAJOR
           - MINOR
           - PATCH
       prerelease:
         description: "Set as a prerelease version."
         required: false
+        default: ""
         type: choice
         options:
+          - ""
           - alpha
           - beta
           - rc
