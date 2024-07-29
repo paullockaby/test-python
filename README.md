@@ -23,17 +23,28 @@ This is a testing ground for building a Python project with all of the bells and
 
 ## Introduction
 
-This is a test repository for seeing how GitHub Actions work.
+This repository is intended to be a place where all of the bells and whistles of modern software projects can be tested and tweaked. There is nothing in this repository that is really worth deploying. However, this repository can be used as an example for other repositories that might want to have features such as:
 
-To make this kinda work, first you'll want to generate a deploy key for the repository, like this:
+* A fancy README and code of conduct.
+* A working Python project configuration with Poetry.
+* Linting and testing configurations for a Python project.
+* GitHub Actions to run pull requests, merges, and version bumps including changelogs, all automatically.
+
+So, use this repository as a source to figure out how to do your own thing.
+
+## Installation
+
+First you will want to generate an SSH deploy key for the repository, like this:
 
 ```
 ssh-keygen -t ed25519 -C commitizen -f deploy_key -P ""
 ```
 
-This will create two files: `deploy_key` and `deploy_key.pub`. **DO NOT COMMIT THESE.** Save them off somewhere for future reference. Take the `deploy_key.pub` file and add it as a deploy key to the repo and make sure that it has write access. Take the private key, aka the non `.pub` file, and create a secret called `DEPLOY_KEY` in the repo. This will be used by commitizen to push commits with the changelog to the `main` branch.
+This will create two files: `deploy_key` and `deploy_key.pub`. **DO NOT COMMIT THESE.** Save them off somewhere for future reference.
 
-Then set up some branch rules. These will only work on public repos. Or, if you have paid for a pro or team plan or enterprise plan, then it will work on private repos, too.
+Once you have the SSH keys, take the `deploy_key.pub` file and add it as a deploy key to the repo and make sure that it has write access. Take the private key, aka the non `.pub` file, and create a secret called `DEPLOY_KEY` in the repo. This will be used by commitizen to push commits with changelog updates to the `main` branch during a release.
+
+Next we need to set a branch ruleset for the repository. Rulesets for branches only work on public repos. Or, if you have paid for a pro account or team plan or enterprise plan, then it will work on private repos, too.
 
 The rule that we're going to create is will look like this:
 
@@ -54,41 +65,66 @@ The rule that we're going to create is will look like this:
       * `tests / test` - GitHub Actions
   * Block force pushes
 
-Create the above rule, the above deploy key, and tweak the jobs to your liking, to run the lints, and tests, and builds that you want and you're on your way. What's next?
+So to sum up:
 
-Well, this should be what you do next:
+1. Create the branch rule as described above.
+2. Create the deploy key as described above.
+3. Tweak the workflows in `.github/workflows` to your liking such that they correctly run lints and tests and builds.
+4. Try making a pull request and watch the tests run.
+5. Merge the pull request and try creating a release.
 
-1. Install pre-commit hooks: `make pre-commit`
-2. Make changes in branches only and commit them using convential commit messages. Make sure that the SUBJECT LINE of the pull request describes what the pull request does because that's the only thing that will appear in the changelog.
-3. When you're ready to make a release, go to GitHub Actions tab and choose "Create Releases" and then click "Run workflow" and run the workflow against the `main` branch. You'll see, based on your commit messages, an update to CHANGELOG.md, a new tag, a release, and whatever you put into the `release-build.yaml` action.
+What is next? In order to use this repository more effectively there are things that you should do locally. These include:
 
-## Installation
-
-TODO
+1. Install pre-commit hooks into your local copy of this repository. You can do that by running this: `make pre-commit`. This should push your development "left" and keep from wasting CI time on failed linting.
+2. Make changes only in branches. The branch rule created above will not accept pushes to `main`.
+3. Write commit messages only using convential commit messages. Make sure that the SUBJECT LINE of the pull request describes what the pull request does because that is the only thing that will appear in the changelog.I
+4. When you are ready to make a release, go to GitHub Actions page and choose "Create Releases" and then click "Run workflow" and run the workflow against the `main` branch. You will see, based on the commit messages in your pull requests, an update to CHANGELOG.md, a new tag, a GitHub Release, plus whatever you put into the `release-build.yaml` action.
 
 ## Quick start
 
-TODO
+See [Installation](#installation).
 
 ## Usage
 
-TODO
+See [Installation](#installation).
 
 ## Known issues and limitations
 
-TODO
+There are no known issues or limitations at this time.
 
 ## Getting help
 
-TODO
+Please use GitHub Issues to raise bugs or feature requests or to otherwise communicate with the project. For more details on how to get help, please read the [contributing](#contributing) section.
 
 ## Contributing
 
-TODO
+This project welcomes contributions! Please be cognizant of the [code of conduct](CODE_OF_CONDUCT.md) when interacting with or contributing to this project. You may contribute in many ways:
+
+* By filing bug reports. Please use GitHub Issues to submit any bugs that you may encounter.
+* By filing feature requests. Be aware that we may not implement every feature request but we will evaluate them and provide feedback.
+* By submitting pull requests. Please use GitHub to submit pull requests.
+* By writing documentation. If you see something that could be explained better or is not explained at all, please submit a pull request to update the documentation. Alternatively, just submit an issue describing what is unclear and how it could be more clear and we will endeavor to update the documentation.
+
+If you choose to submit a pull request please follow these guidelines:
+
+* Please provide a clean, concise title for your pull request and a clear description of what you are changing so that it may be evaluated more effectively.
+* Limit any pull request to a single change or the minimum number of changes necessary to achieve the feature or bug fix. Many smaller pull requests are preferred over fewer, larger pull requests.
+* No pull request will be reviewed unless and until the linter and the tests pass. You can the linter and the tests locally and we encourage you to do so.
+* Not every change can or may be accepted. If you are uncertain whether your pull request would be accepted then please open an issue before beginning work to discuss what you would like to do.
+* This project is licensed using the Apache License and that by submitting code you accept that your code will be licensed the same.
+
+Again, please use GitHub Issues and GitHub Pull Requests to communicate with the project. It is the fastest and most effective way to be heard.
+
+If you have security feedback you can reach out to [contact@paullockaby.com](mailto:contact@paullockaby.com) to raise your security finding in a confidential manner so that we may provide a fix when the vulnerability is made public. If you are not sure that your feedback is security related please err on the side of caution and send the email. The worst that will happen is you will be asked to create a GitHub Issue.
 
 ## License
 
-TODO
+Copyright &copy; 2024 Paul Lockaby. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
 
 ## Acknowledgements
 
