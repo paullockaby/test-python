@@ -59,7 +59,7 @@ Create the above rule, the above deploy key, and tweak the jobs to your liking, 
 Well, this should be what you do next:
 
 1. Install pre-commit hooks: `make pre-commit`
-2. Make changes and commit them using convential commit messages.
+2. Make changes in branches only and commit them using convential commit messages. Make sure that the SUBJECT LINE of the pull request describes what the pull request does because that's the only thing that will appear in the changelog.
 3. When you're ready to make a release, go to GitHub Actions tab and choose "Create Releases" and then click "Run workflow" and run the workflow against the `main` branch. You'll see, based on your commit messages, an update to CHANGELOG.md, a new tag, a release, and whatever you put into the `release-build.yaml` action.
 
 ## Installation

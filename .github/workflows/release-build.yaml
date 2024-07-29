@@ -85,4 +85,4 @@ jobs:
     #      IMAGE_NAME: ghcr.io/myaccount/myrepo
 
       - run: |
-          echo "Finished building and pushing containers."
+          echo "Finished building and pushing containers for version ${{ github.ref_name }}."
