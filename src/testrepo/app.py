@@ -1,6 +1,7 @@
 import logging
 
-from quart import Quart, Response, jsonify, make_response
+from quart import Quart, jsonify, make_response
+from quart.typing import ResponseTypes
 
 from testrepo import __version__
 
@@ -11,7 +12,7 @@ def load() -> Quart:
     app.logger.info("starting web application version %s", __version__)
 
     @app.route("/")
-    async def health() -> Response:
+    async def health() -> ResponseTypes:
         return await make_response(
             jsonify({
                 "status": "pass",
