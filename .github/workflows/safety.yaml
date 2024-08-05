@@ -35,7 +35,16 @@ jobs:
           python-version: "3.12.x"
           cache: "pip"
 
+      - uses: actions/cache@v4
+        with:
+          path: ~/.safety
+          key: safety
+
       - name: Run safety checks
         run: |
           pip install safety
-          safety --disable-optional-telemetry check --full-report --output=screen --file=poetry.lock
+          safety --disable-optional-telemetry check --output=screen --file=poetry.lock
+        env:
+          COLUMNS: 120
+          FORCE_COLOR: 1
+          NON_INTERACTIVE: 1
