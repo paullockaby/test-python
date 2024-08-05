@@ -24,26 +24,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install poetry
-        run: |
-          pipx install poetry
-          pipx inject poetry poetry-plugin-export
-
       - name: Setup python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12.x"
           cache: "pip"
 
-      - uses: actions/cache@v4
+      - name: Cache safety database
+        uses: actions/cache@v4
         with:
           path: ~/.safety
           key: safety
 
-      - name: Run safety checks
+      - name: Install safety
         run: |
           pip install safety
-          safety --disable-optional-telemetry check --output=screen --file=poetry.lock
+
+      - name: Run safety checks
+        run: |
+          safety --disable-optional-telemetry check --output=screen --file=poetry.lock --cache
         env:
           COLUMNS: 120
           FORCE_COLOR: 1
