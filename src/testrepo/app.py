@@ -1,19 +1,19 @@
 import logging
 
-from quart import Quart, jsonify, make_response
-from quart.typing import ResponseTypes
+from flask import Flask, jsonify, make_response
+from flask.wrappers import Response
 
 from testrepo import __version__
 
 
-def load() -> Quart:
-    app = Quart(__name__, static_folder=None)
+def load() -> Flask:
+    app = Flask(__name__, static_folder=None)
     app.config.from_prefixed_env("TEST")
     app.logger.info("starting web application version %s", __version__)
 
     @app.route("/")
-    async def health() -> ResponseTypes:
-        return await make_response(
+    def health() -> Response:
+        return make_response(
             jsonify({
                 "status": "pass",
                 "message": "flux capacitor is fluxing",

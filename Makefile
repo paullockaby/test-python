@@ -52,7 +52,7 @@ clean:
 
 .PHONY: pre-commit
 pre-commit:
-	pre-commit install
+	poetry run pre-commit install
 
 .PHONY: bump-check
 bump-check:
