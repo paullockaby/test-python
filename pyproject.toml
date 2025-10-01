@@ -22,7 +22,7 @@ python = "^3.13 <3.14"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.2.1"
-pytest-cov = "^6.0.0"
+pytest-cov = "^7.0.0"
 pytest-mypy = "^1.0.1"
 
 [build-system]
