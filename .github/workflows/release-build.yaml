@@ -14,7 +14,7 @@ jobs:
       packages: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
     # this sets us up to build and deploy to AWS ECR. you will still need to
     # actually build the container and push it. you can use multiarch images
