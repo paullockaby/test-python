@@ -1,4 +1,4 @@
-FROM python:3.13.7-slim-trixie@sha256:5f55cdf0c5d9dc1a415637a5ccc4a9e18663ad203673173b8cda8f8dcacef689 AS base
+FROM python:3.14.0-slim-trixie@sha256:4ed33101ee7ec299041cc41dd268dae17031184be94384b1ce7936dc4e5dead3 AS base
 
 # github metadata
 LABEL org.opencontainers.image.source=https://github.com/paullockaby/test-python
