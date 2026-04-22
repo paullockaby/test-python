@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> If you are viewing this repository in GitHub, know that GitHub is [a mirror of the original repository](https://code.lockaby.org/public/test-python).
+
 # test-python
 
 This is a testing ground for building a Python project with all of the bells and whistles of a build pipeline using GitHub Actions.
@@ -58,10 +61,6 @@ The rule that we're going to create is will look like this:
     * Require review from Code Owners
   * Require status checks to pass
     * Require branches to be up to date before merging
-    * Status checks that are required:
-      * `tests / pre-commit` - GitHub Actions
-      * `tests / test` - GitHub Actions
-      * `security / security` - GitHub Actions
   * Block force pushes
 
 So to sum up:

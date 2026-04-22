@@ -5,16 +5,16 @@ on:
 
 jobs:
   pre-commit:
-    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
 
     permissions:
       contents: read
 
     steps:
-      - uses: actions/checkout@v6
+      - name: Check out the code
+        uses: actions/checkout@v6
 
-      - name: Setup python
+      - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: "3.14.x"
@@ -47,7 +47,8 @@ jobs:
     #      - 5432:5432
 
     steps:
-      - uses: actions/checkout@v6
+      - name: Check out the code
+        uses: actions/checkout@v6
 
       - name: Install poetry
         run: pipx install poetry

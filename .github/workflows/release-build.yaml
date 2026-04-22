@@ -14,7 +14,8 @@ jobs:
       packages: write
 
     steps:
-      - uses: actions/checkout@v6
+      - name: Check out the code
+        uses: actions/checkout@v6
 
     # this sets us up to build and deploy to AWS ECR. you will still need to
     # actually build the container and push it. you can use multiarch images
@@ -71,6 +72,9 @@ jobs:
     #  - name: Set up QEMU for docker multiarch builds
     #    uses: docker/setup-qemu-action@v4
     #
+    #  - name: Set up docker buildx
+    #    uses: docker/setup-buildx-action@v3
+    #
     #  - name: Build and push container images
     #    run: |
     #      docker buildx build --push --platform $IMAGE_ARCH -t $IMAGE_NAME:${{ github.ref_name }} -t $IMAGE_NAME:latest .
@@ -93,28 +97,6 @@ jobs:
 
       - name: Build, tag, and push docker image to the GitHub Container Registry
         run: make push
-
-      - name: Install poetry
-        run: pipx install poetry
-
-      - name: Setup python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.14.x"
-          cache: "poetry"
-
-      - name: Run python build
-        run: |
-          poetry version ${{ github.ref_name }}
-          poetry build --no-interaction
-
-      - name: Update release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: |
-            dist/*
-            CHANGELOG.md
-          tag_name: "${{ github.ref_name }}"
 
       - run: |
           echo "Finished building and pushing containers for version ${{ github.ref_name }}."
